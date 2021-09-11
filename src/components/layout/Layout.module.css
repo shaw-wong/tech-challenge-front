@@ -1,0 +1,29 @@
+.layout {
+  text-align: left;
+}
+
+.logo {
+  height: 50px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.subheader {
+  text-transform: uppercase;
+  margin: 8px;
+}
+
+.link {
+  color: #e1373b;
+}
+
+.main {
+  margin: 3rem auto;
+  width: 90%;
+  max-width: 40rem;
+}

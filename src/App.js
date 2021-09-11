@@ -1,15 +1,14 @@
-import React from 'react';
-import logo from './logo.jpg';
-import './App.css';
+import React from "react";
+import "./App.css";
+
+import Layout from "./components/layout/Layout";
+import Employees from "./features/employees/Employees";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <span className="App-subheader">Fiber optic network planning, simplified</span>
-      </header>
-    </div>
+    <Layout>
+      <Employees />
+    </Layout>
   );
 }
 
