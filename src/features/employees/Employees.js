@@ -20,11 +20,19 @@ import Paper from "@material-ui/core/Paper";
 import FuzzySearch from "fuzzy-search";
 
 const useStyles = makeStyles((theme) => ({
+  searchText: {
+    marginBottom: theme.spacing(2),
+  },
   formControl: {
     minWidth: 170,
   },
-  btn: {
+  gridItem: {
+    position: "relative",
+  },
+  gridBtn: {
+    position: "absolute",
     marginTop: theme.spacing(1),
+    right: theme.spacing(2),
   },
 }));
 
@@ -38,7 +46,7 @@ function Employees() {
 
   const searcher = new FuzzySearch(
     data,
-    ["roleId", "lastName", "firstName", "role.name"],
+    ["id", "lastName", "firstName", "role.name"],
     {
       caseSensitive: false,
     }
@@ -88,6 +96,7 @@ function Employees() {
     <div>
       <div>
         <TextField
+          className={classes.searchText}
           id="search"
           name="search"
           label="Search"
@@ -110,7 +119,10 @@ function Employees() {
               {employees.map((employee) => {
                 if (employee && employee.role) {
                   return (
-                    <TableRow key={employee.id}>
+                    <TableRow
+                      key={employee.id}
+                      style={{ background: employee.role.backgroundColour }}
+                    >
                       <TableCell component="th" scope="row">
                         {employee.id}
                       </TableCell>
@@ -119,6 +131,8 @@ function Employees() {
                       <TableCell align="right">{employee.role.name}</TableCell>
                     </TableRow>
                   );
+                } else {
+                  return null;
                 }
               })}
             </TableBody>
@@ -147,7 +161,7 @@ function Employees() {
               onChange={handleChange}
             />
           </Grid>
-          <Grid item xs={6} sm={3}>
+          <Grid className={classes.gridItem} item xs={6} sm={3}>
             <FormControl required className={classes.formControl}>
               <InputLabel id="roleId-label">Role</InputLabel>
               <Select
@@ -163,9 +177,9 @@ function Employees() {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={6} sm={3}>
+          <Grid className={classes.gridItem} item xs={6} sm={3}>
             <Button
-              className={classes.btn}
+              className={classes.gridBtn}
               variant="contained"
               color="primary"
               size="large"

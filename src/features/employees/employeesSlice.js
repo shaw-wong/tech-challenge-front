@@ -32,8 +32,10 @@ export const employeesSlice = createSlice({
       //
     },
     add: (state, action) => {
+      // Add the new employee from user input.
       const newEmployee = addRoletoEmployee(action.payload);
       if (newEmployee) {
+        console.log("New Employee: ", newEmployee);
         return {
           ...state,
           employees: [...state.employees, newEmployee],
