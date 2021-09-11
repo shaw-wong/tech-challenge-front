@@ -19,6 +19,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import FuzzySearch from "fuzzy-search";
 
+// Define styles.
 const useStyles = makeStyles((theme) => ({
   searchText: {
     marginBottom: theme.spacing(2),
@@ -44,11 +45,13 @@ const useStyles = makeStyles((theme) => ({
 function Employees() {
   const classes = useStyles();
 
+  // Read and sort the data by role then name
   const data = _.sortBy(
     useSelector((state) => state.employees.employees),
     ["roleId", "lastName"]
   );
 
+  // Fuzzy search the data
   const searcher = new FuzzySearch(
     data,
     ["id", "lastName", "firstName", "role.name"],
@@ -56,16 +59,13 @@ function Employees() {
       caseSensitive: false,
     }
   );
-
   const [searchKeyword, setSearchKeyword] = useState("");
-
   const employees = searcher.search(searchKeyword);
 
   const dispatch = useDispatch();
 
-  /** Generate the new ID for the new employee by calculating
-   * the maximum value of the existing employees and plus 1.
-   */
+  // Generate the new ID for the new employee by calculating
+  // the maximum value of the existing employees and plus 1.
   const newId = (employees) => {
     if (employees !== null && employees.length > 0) {
       return _.maxBy(employees, "id").id + 1;
@@ -73,6 +73,7 @@ function Employees() {
     return 1;
   };
 
+  // Read the new employee information from user input.
   const [newEmployeeState, setNewEmployeeState] = useState({
     firstName: "",
     lastName: "",
@@ -88,6 +89,7 @@ function Employees() {
     });
   };
 
+  // Reset the user input once the data is updated.
   useEffect(() => {
     setNewEmployeeState({
       firstName: "",
@@ -97,6 +99,7 @@ function Employees() {
     });
   }, [data.length]);
 
+  // Page Content.
   return (
     <div>
       <div>

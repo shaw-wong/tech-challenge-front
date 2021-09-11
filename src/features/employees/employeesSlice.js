@@ -2,10 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 import employees from "../../data/employees";
 import roles from "../../data/roles";
 
+// Find role details from roleID.
 const getRole = (roleID) => {
   return roles.find((role) => role.id === roleID);
 };
 
+// Add the role details into the employee.
 const addRoleToEmployee = (employee) => {
   const role = getRole(employee.roleId);
   if (role && employee.lastName && employee.firstName ) {
