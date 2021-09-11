@@ -6,9 +6,9 @@ const getRole = (roleID) => {
   return roles.find((role) => role.id === roleID);
 };
 
-const addRoletoEmployee = (employee) => {
+const addRoleToEmployee = (employee) => {
   const role = getRole(employee.roleId);
-  if (role) {
+  if (role && employee.lastName && employee.firstName ) {
     return { ...employee, role };
   } else {
     return null;
@@ -33,7 +33,7 @@ export const employeesSlice = createSlice({
     },
     add: (state, action) => {
       // Add the new employee from user input.
-      const newEmployee = addRoletoEmployee(action.payload);
+      const newEmployee = addRoleToEmployee(action.payload);
       if (newEmployee) {
         console.log("New Employee: ", newEmployee);
         return {

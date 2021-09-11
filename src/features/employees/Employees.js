@@ -33,6 +33,11 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     marginTop: theme.spacing(1),
     right: theme.spacing(2),
+    background: "#04141c",
+  },
+  tableHead: {
+    background: "#000000",
+    color: "#FFFFFF",
   },
 }));
 
@@ -109,10 +114,16 @@ function Employees() {
           <Table className={classes.table} aria-label="employees-table">
             <TableHead>
               <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell align="right">Last Name</TableCell>
-                <TableCell align="right">First Name</TableCell>
-                <TableCell align="right">Role</TableCell>
+                <TableCell className={classes.tableHead}>ID</TableCell>
+                <TableCell className={classes.tableHead} align="right">
+                  Last Name
+                </TableCell>
+                <TableCell className={classes.tableHead} align="right">
+                  First Name
+                </TableCell>
+                <TableCell className={classes.tableHead} align="right">
+                  Role
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
